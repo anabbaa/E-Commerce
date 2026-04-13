@@ -1,7 +1,6 @@
 import React from 'react';
 import { radii, shadows, sizes, variants } from "../styles/globals";
 
-
 const Button = ({
   children,
   variant = "primary",
@@ -9,8 +8,8 @@ const Button = ({
   rounded = "md",
   shadow = "md",
   width,
-  onClick,
   disabled,
+  onClick ,
   ...props
 }) => {
   return (
@@ -19,10 +18,9 @@ const Button = ({
   disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-500 hover:bg-green-600'
 }`}
      style={width ? { width } : undefined}
-      onClick={onClick}
       disabled={disabled}
-         {...props}
-    
+      onClick={onClick}
+         {...props} //all properties of a button    
     >
       {children}
     </button>

@@ -1,20 +1,29 @@
 import React, {useState}from 'react'
-import {pageSection ,  typography } from "./styles/globals"
-import ProductsList from './components/productsList'
-import Header from "./components/Header"
+import {pageSection } from "./styles/globals"
+import ProductsList from  "./components/ProductsList"
+import Header from  "./components/Header"
+import SelectCategory from  "./components/SelectCategory"
 
 const App = () => {
-  const [isTrue , setIsTrue] = useState(false);
+  const [putInCart , setPutInCart] = useState([])
+  const [searchItem , setSearchItem ] = useState("");
+  const [selectCategory , setSelectCategory ] = useState("");
+
+  const addToCart = (product)=>{
+    setPutInCart((prevState)=> [...prevState , product])
+  }
+  console.log(putInCart)
+
   return (
     <>
     <Header  title="My Ecommerce Store" subTitle= "welcome to My Store"/>
-    <section className={pageSection.base}>
-      <h1 className={typography.heading}>Hello World</h1>
+        <SelectCategory searchItem={searchItem} setSearchItem={setSearchItem}
+    selectCategory={selectCategory} setSelectCategory={setSelectCategory}/>
 
+    <section className={pageSection.base}  flex items-center justify-center>
       <ProductsList 
-  isTrue={isTrue} 
-  setIsTrue={setIsTrue} 
-  onClick={()=> setIsTrue(!isTrue)} 
+  putInCart={putInCart} 
+  onClick={addToCart}
 />
     </section>
     </>

@@ -2,13 +2,11 @@
 import Button from "./Button";
 import { card } from "../styles/globals";
 
-const ProductCard = ({ product , isTrue,  onClick }) => {
+const  ProductCard = ({ product  , onClick }) => {
   
-   console.log(isTrue)
-
   return (
     <div key={product.id} className={card.cardWrapper}>
-      <div className={card.imageWrapper}>
+      <div className={card.imageWrapper}> 
         <img src={product.image} alt={product.name} className={card.image} />
       </div>
 
@@ -24,9 +22,9 @@ const ProductCard = ({ product , isTrue,  onClick }) => {
         </div>
 
         <div className="flex justify-between">
-          <Button onClick={onClick} disabled={false}>
-            {isTrue ? "Added " : "Add to Cart"}
-          </Button>
+          <Button onClick={() => onClick(product)}>
+              Add To Cart
+              </Button>
           <Button variant="removeFromCart" size="xs" rounded="sm" shadow="sm">
             Remove
           </Button>

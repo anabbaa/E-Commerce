@@ -1,10 +1,14 @@
+import Ract from "react"
+
+
 function Header({title , subTitle}) {
   return (
-    <header className="bg-blue-500 text-white p-4 flex flex-col items-center gap-4">
-      <h1 className="text-2xl font-bold">{title}</h1>
-      <h2  className="text-2xl font-bold">   {subTitle}  </h2>
-      <nav>
-        <a href="/" className="text-white mr-4 hover:underline">Home</a>
+    <header className=" flex items-center justify-around w-screen bg-blue-500 text-white
+     p-4  h-[10vh]">
+      <h1 className="text-2x4 font-bold">{title}</h1>
+      <h2  className="text-2x2 font-bold">   {subTitle}  </h2>
+      <nav >
+        <a href="/" className="text-red mr-4 hover:underline">Home</a>
         <a href="/products" className="text-white hover:underline">Products</a>
       </nav>
     </header>

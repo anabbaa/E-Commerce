@@ -1,20 +1,30 @@
 import React from "react";
-import { products } from "../Data/products";
-import ProductCard from "./productsCard";
+import { products } from "../data/products";
+import ProductCard from  "./ProductsCard"
 import {card} from "../styles/globals"
 
-const ProductsList = ({onClick , isTrue }) => {
+const ProductsList = ({onClick }) => {
+  
     return (
-          <section className="px-3">
-      <h2>Product List</h2>
-      <div className={card.cardsWrapper}>
+<>
+<section className="h-[70vh] flex justify-center">
+  <div className="w-[90vw] h-[60vh]">
+  <h2 className="text-center text-2xl font-bold mb-4  h-[10vh]">
+      Products List
+    </h2>
+    
+    <div className={card.cardsWrapper}>
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          onClick={onClick}
+        />
+      ))}
+    </div>
 
-{products.map((product) => (   
-  <ProductCard onClick={onClick} key={product.id} product={product} isTrue={isTrue} />
-))}
-
-      </div>
-    </section>
+  </div>
+</section></>
     );
 };
 

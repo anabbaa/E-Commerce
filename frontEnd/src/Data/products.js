@@ -2,6 +2,9 @@ import coffeeImage from "../assets/coffee.png";
 import headphoneImage from "../assets/headphone.png";
 import monitorImage from "../assets/monitor.png";
 import phoneImage from "../assets/phone.jpg";
+import ringImage from "../assets/ring.png"
+import necklaceImage from "../assets/necklace.png"
+import braceletImage from "../assets/bracelect.png"
 
 export const products = [
   {
@@ -30,7 +33,7 @@ export const products = [
     id: 3,
     name: "Coffee Maker",
     description: "Coffee machine",
-    category: "Home Appliances",
+    category: "Electronics",
     price: 39.99,
     currency: "EUR",
     inStock: false,
@@ -102,5 +105,36 @@ export const products = [
     inStock: true,
     rating: 4.3,
     image: "https://pngimg.com/uploads/tablet/tablet_PNG8599.png",
+  },
+  {
+    Id: 10,
+    name: "Ring",
+    description: "Silver Diamond Ring",
+    category: "Jewelery",
+    price: 1000,
+    currency: "EUR",
+    inStock: true,
+    rating: 4.8,
+    image: ringImage,
+  },
+  { Id: 11,
+    name: "Necklace",
+    description: "Gold Heart Necklace",
+    category: "Jewelery",
+    price: 1500,
+    currency: "EUR",
+    inStock: true,
+    rating: 4.6,
+    image: necklaceImage,
+  },
+  { Id: 12,
+    name: "Bracelet",
+    description: "Diamond Tennis Bracelet  Ring",
+    category: "Jewelery",
+    price: 1200,
+    currency: "EUR",
+    inStock: true,
+    rating: 4.8,
+    image: braceletImage,
   },
 ];
