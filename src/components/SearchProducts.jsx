@@ -1,20 +1,17 @@
-
+import { useProducts } from  "../context/CartContext"
 import ProductCard from "./ProductsCard";
 import { card } from "../styles/globals";
-import { useProducts } from "../context/CartContext";
 
-const Category  = () => {
-
-    const {category} = useProducts();
-
+const SearchProducts  = () => {
+  const { filteredProducts } = useProducts();
 
   return (
     <div className={card.cardsWrapper}>
-      {category.map((product) => (
+      {filteredProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );
 };
 
-export default Category;
+export default SearchProducts;

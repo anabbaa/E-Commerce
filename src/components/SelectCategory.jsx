@@ -1,13 +1,9 @@
-import {products} from "../data/products"
+import { useProducts } from "../context/CartContext";
 
-const SelectCategory = ({ searchItem, setSearchItem, selectCategory, setSelectCategory,}) => {
+const SelectCategory = () => {
 
-  const category = products.filter((item) =>
-    
-    item.category.toLowerCase() === selectCategory.toLowerCase()
-  );
+  const { searchItem,  setSearchItem,   selectCategory,   setSelectCategory,} = useProducts();
 
-console.log(category);
 
   return (
     <div className="flex items-center justify-center h-[10vh] w-[100vw]">

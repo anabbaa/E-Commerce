@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "private": true,
-  "homepage": "https://YOUR_USERNAME.github.io/E-Commerce",
+  "homepage": "https://anabbaa.github.io/E-Commerce",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,13 +9,15 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^3.3.0",
     "@tailwindcss/vite": "^4.2.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-icons": "^5.6.0",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

@@ -1,10 +1,12 @@
 import React from "react";
-import { products } from "../data/products";
 import ProductCard from  "./ProductsCard"
 import {card} from "../styles/globals"
+import { useProducts } from "../context/CartContext";
 
-const ProductsList = ({onClick }) => {
-  
+const ProductsList = ({onAddToCart}) => {
+
+const { addToCart , products} = useProducts();
+console.log(addToCart)
     return (
 <>
 <section className="h-[70vh] flex justify-center">
@@ -18,7 +20,9 @@ const ProductsList = ({onClick }) => {
         <ProductCard
           key={product.id}
           product={product}
-          onClick={onClick}
+          onAddToCart={onAddToCart}
+
+       
         />
       ))}
     </div>
