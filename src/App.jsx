@@ -12,7 +12,7 @@ import Cart from './components/Cart'
 const App = () => {
 
  
-const { handelAddToCart, cartView, category, filteredProducts } = useProducts();
+const { handelAddToCart, cartView, category, filteredProducts} = useProducts();
 
   if (cartView) return <Cart />
 

@@ -22,7 +22,7 @@ const  ProductCard = ({ product, onAddToCart  }) => {
         </div>
 
         <div className="flex justify-between">
-          <Button   onClick={()=> onAddToCart()}  >
+          <Button   onClick={()=> onAddToCart(product)}  >
               Add To Cart
               </Button>
           <Button variant="removeFromCart" size="xs" rounded="sm" shadow="sm">
@@ -31,7 +31,7 @@ const  ProductCard = ({ product, onAddToCart  }) => {
           <Button variant="viewDetails" size="xs" rounded="sm" shadow="sm">
             View More
           </Button>
-        </div>
+                </div>
       </section>
     </div>
   );

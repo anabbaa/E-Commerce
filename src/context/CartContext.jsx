@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { products } from "../data/products";
+import { FaHandshakeSimple } from "react-icons/fa6";
 
 export const CartContext = createContext();
 
@@ -17,9 +18,42 @@ export const CartProvider = ({ children }) => {
 
   // fn to add to cart 
   const handelAddToCart = (product) => {
-  console.log("clicked", product);
-  setAddToCart((prevState) => [...prevState, product]);
+  setAddToCart((prevState) => {
+    const exist = prevState.find((item) => item.id === product.id);
+    if (exist) {
+      return prevState.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    } else {
+      return [...prevState, { ...product, quantity: 1 }];
+    }
+  });
 };
+// fn to add and decrease and dlete from cart 
+  const handleIncrease = (product) => {
+  setAddToCart((prev) =>
+    prev.map((item) =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  );
+};
+
+const handleDecrease = (product) => {
+  setAddToCart((prev) =>
+    prev
+      .map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+      .filter((item) => item.quantity > 0)
+  );
+};
+
 // category fn
   const category = products.filter((item) =>
     
@@ -58,7 +92,9 @@ export const CartProvider = ({ children }) => {
     cartView,
     setCartView,
     handelAddToCart,
-    addToCart
+    addToCart,
+    handleDecrease,
+    handleIncrease
   };
 
   return (

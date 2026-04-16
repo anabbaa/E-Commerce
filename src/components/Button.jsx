@@ -9,6 +9,7 @@ const Button = ({
   shadow = "md",
   width,
   disabled,
+  onClick,
   ...props
 }) => {
   return (
@@ -19,6 +20,7 @@ const Button = ({
      style={width ? { width } : undefined}
       disabled={disabled}
          {...props} //all properties of a button    
+         onClick={onClick}
     >
       {children}
     </button>

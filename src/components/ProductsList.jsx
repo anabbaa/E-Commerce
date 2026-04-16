@@ -21,8 +21,6 @@ console.log(addToCart)
           key={product.id}
           product={product}
           onAddToCart={onAddToCart}
-
-       
         />
       ))}
     </div>

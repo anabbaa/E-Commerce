@@ -6,7 +6,8 @@ function Header({title , subTitle}) {
 
   const {setCartView} = useProducts()
   return (
-    <header className="flex items-center justify-around w-full bg-blue-500 text-white p-4 h-[10vh]">
+    <header className="flex items-center 
+    justify-around w-full bg-blue-500 text-white p-4 h-[10vh]">
   
   {/* Left */}
   <h1 className="text-2xl font-bold">
