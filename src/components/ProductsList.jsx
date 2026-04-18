@@ -5,8 +5,7 @@ import { useProducts } from "../context/CartContext";
 
 const ProductsList = ({onAddToCart}) => {
 
-const { addToCart , products} = useProducts();
-console.log(addToCart)
+const { allProducts} = useProducts()
     return (
 <>
 <section className="h-[70vh] flex justify-center">
@@ -16,7 +15,7 @@ console.log(addToCart)
     </h2>
     
     <div className={card.cardsWrapper}>
-      {products.map((product) => (
+      {allProducts.map((product) => (
         <ProductCard
           key={product.id}
           product={product}

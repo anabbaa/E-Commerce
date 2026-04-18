@@ -18,6 +18,7 @@ const  ProductCard = ({ product, onAddToCart  }) => {
           <span className={card.price}>
             {product.price} {product.currency}
           </span>
+          <span> still {product.stock} pieces </span>
           <span className={card.rating}>⭐ {product.rating}</span>
         </div>
 

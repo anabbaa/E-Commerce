@@ -5,6 +5,8 @@ import { FaHandshakeSimple } from "react-icons/fa6";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  // use state for main all products
+  const  [allProducts , setAllProducrts] = useState(products);
   // use state to handel select category 
    const [searchItem , setSearchItem ] = useState("");
   const [selectCategory , setSelectCategory ] = useState("");
@@ -18,19 +20,42 @@ export const CartProvider = ({ children }) => {
 
   // fn to add to cart 
   const handelAddToCart = (product) => {
+  if ((product.stock ?? 0) <= 0) return;
+
   setAddToCart((prevState) => {
     const exist = prevState.find((item) => item.id === product.id);
+
     if (exist) {
       return prevState.map((item) =>
         item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+              stock: (item.stock ?? 0) - 1
+            }
           : item
       );
     } else {
-      return [...prevState, { ...product, quantity: 1 }];
+      return [
+        ...prevState,
+        {
+          ...product,
+          quantity: 1,
+          stock: (product.stock ?? 0) - 1
+        }
+      ];
     }
+
   });
+  setAllProducrts((prevstate) => {
+  return prevstate.map((item) =>
+    item.id === product.id
+      ? { ...item, stock: item.stock - 1 }
+      : item
+  );
+});
 };
+
 // fn to add and decrease and dlete from cart 
   const handleIncrease = (product) => {
   setAddToCart((prev) =>
@@ -60,15 +85,18 @@ const handleDecrease = (product) => {
     item.category.toLowerCase() === selectCategory.toLowerCase()
   );
 
+  // fn for  search
+
   const searchHandle = (e) => {
     e.preventDefault();
 
+ 
     const userText = userInput.toLowerCase().trim();
-
-    if (!userText) {
-      setFilteredProducts([]);
-      return;
-    }
+         if (!userText) {
+    setFilteredProducts([]);
+    setUserInput("");
+    return;
+  }
 
     const result = products.filter((product) =>
       product.name.toLowerCase().includes(userText)
@@ -76,8 +104,6 @@ const handleDecrease = (product) => {
 
     setFilteredProducts(result);
   };
-
-  console.log(addToCart)
 
   const contextObject = {
     products,
@@ -94,7 +120,8 @@ const handleDecrease = (product) => {
     handelAddToCart,
     addToCart,
     handleDecrease,
-    handleIncrease
+    handleIncrease,
+    allProducts
   };
 
   return (
