@@ -1,36 +1,46 @@
 import React from 'react'
-import {pageSection } from "./styles/globals"
-import ProductsList from  "./components/ProductsList"
-import Header from  "./components/Header"
-import SelectCategory from  "./components/SelectCategory"
-import LookUp from "./components/LookUp"
-import SearchProducts from './components/SearchProducts'
+import Home from './components/Home'
 import { useProducts} from './context/CartContext'
-import Category from "./components/Category"
 import Cart from './components/Cart'
+import { createBrowserRouter , RouterProvider} from 'react-router-dom'
+import ProductsList from './components/ProductsList'
+import Layout from './components/LayOut'
 
 const App = () => {
 
- 
-const { handelAddToCart, cartView, category, filteredProducts} = useProducts();
+const { handelAddToCart} = useProducts();
 
-  if (cartView) return <Cart />
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <Layout>
+        <Home onAddToCart={handelAddToCart} />
+      </Layout>
+    ),
+  },
+  {
+    path: "/cart",
+    element: (
+      <Layout>
+        <Cart />
+      </Layout>
+    ),
+  },
+  {
+    path: "/products",
+    element: (
+      <Layout>
+        <ProductsList />
+      </Layout>
+    ),
+  },
+]);
 
   return (
     <>    
-    <Header  title="My Ecommerce Store" subTitle= "welcome to My Store"/>
-      <SelectCategory  /> 
-
-    <LookUp />
-    <section className={`${pageSection.base} flex items-center justify-center`}>
-  {filteredProducts.length > 0 ? (
-    <SearchProducts />
-  ) : category.length > 0 ? (
-    <Category  />
-  ) : (
-    <ProductsList onAddToCart={handelAddToCart} />
-  )}
-</section>
+    <RouterProvider  router={router}  ></RouterProvider>
+  
     </>
   
       )  

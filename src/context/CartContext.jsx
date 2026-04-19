@@ -14,8 +14,7 @@ export const CartProvider = ({ children }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [userInput, setUserInput] = useState("");
   // use state to cart in header
-  const [cartView , setCartView ] = useState(false);
-  //
+  //update cart
   const [addToCart , setAddToCart] = useState([])
 
   // fn to add to cart 
@@ -87,23 +86,25 @@ const handleDecrease = (product) => {
 
   // fn for  search
 
-  const searchHandle = (e) => {
-    e.preventDefault();
+const searchHandle = (e) => {
+  e.preventDefault();
 
- 
-    const userText = userInput.toLowerCase().trim();
-         if (!userText) {
+  const userText = userInput.toLowerCase().trim();
+
+  if (!userText) {
     setFilteredProducts([]);
-    setUserInput("");
     return;
   }
 
-    const result = products.filter((product) =>
-      product.name.toLowerCase().includes(userText)
-    );
+  const result = products.filter((product) =>
+    product.name.toLowerCase().includes(userText)
+  );
 
-    setFilteredProducts(result);
-  };
+  setFilteredProducts(result);
+
+
+  setUserInput("");
+};
 
   const contextObject = {
     products,
@@ -115,8 +116,6 @@ const handleDecrease = (product) => {
     setSearchItem,
     setSelectCategory,
     category,
-    cartView,
-    setCartView,
     handelAddToCart,
     addToCart,
     handleDecrease,

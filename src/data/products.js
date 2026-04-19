@@ -5,6 +5,7 @@ import phoneImage from "../assets/phone.jpg";
 import ringImage from "../assets/ring.png"
 import necklaceImage from "../assets/necklace.png"
 import braceletImage from "../assets/bracelect.png"
+import diamondEnhagementRing from "../assets/Diamond Engagment Ring.png"
 
 export const products = [
   {
@@ -148,5 +149,16 @@ export const products = [
     inStock: true,
     rating: 4.8,
     image: braceletImage,
+  },
+    { Id: 12,
+    name: "Ring",
+    description: "Diamond  Engagement Ring",
+    category: "Jewelery",
+    price: 3000,
+    currency: "EUR",
+    stock: 7,
+    inStock: true,
+    rating: 4.8,
+    image: diamondEnhagementRing,
   },
 ];

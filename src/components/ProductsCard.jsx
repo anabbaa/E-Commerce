@@ -2,7 +2,9 @@
 import Button from "./Button";
 import { card } from "../styles/globals";
 
+
 const  ProductCard = ({ product, onAddToCart  }) => {
+  
   
   return (
     <div key={product.id} className={card.cardWrapper}>
@@ -23,12 +25,9 @@ const  ProductCard = ({ product, onAddToCart  }) => {
         </div>
 
         <div className="flex justify-between">
-          <Button   onClick={()=> onAddToCart(product)}  >
+          <Button   onClick={()=> onAddToCart(product)} disabled={product.stock === 0 }  >
               Add To Cart
               </Button>
-          <Button variant="removeFromCart" size="xs" rounded="sm" shadow="sm">
-            Remove
-          </Button>
           <Button variant="viewDetails" size="xs" rounded="sm" shadow="sm">
             View More
           </Button>

@@ -3,13 +3,15 @@ import Header from "./Header";
 import ProductCard from "./ProductsCard";
 import AddDelete from "./AddDelete";
 import Bill from "./Bill";
+import Layout from "./LayOut";
 const Cart = () => {
       const { addToCart } = useProducts();
 
+    
+
     return (
         <>
-        <Header className=""  title="My Ecommerce Store" 
-        subTitle= "welcome to My Store" />
+        
 
   <div className="w-[90vw] h-[70vh] flex flex-wrap justif-evenly flex-row gap-3" >
 
@@ -24,10 +26,7 @@ const Cart = () => {
    
 
   </div>
-    
       <Bill />
-          
-
         </>
     )
 

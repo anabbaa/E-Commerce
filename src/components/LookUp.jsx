@@ -2,10 +2,10 @@ import React  from "react";
 import Button from "./Button";
 import { useProducts } from "../context/CartContext";
 
+
 const Lookup = () => {
   const { userInput, setUserInput, searchHandle } = useProducts();
-
-    
+  
   return (
   
 <form
@@ -20,7 +20,7 @@ const Lookup = () => {
     className="border border-gray-300 rounded px-3 py-1 focus:outline-none"
   />
 
-  <Button type="submit">Search</Button>
+  <Button type="submit" >Search</Button>
 </form>
   );
 };
