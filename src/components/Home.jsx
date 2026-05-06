@@ -11,7 +11,7 @@ import Layout from "./LayOut"
 import Load from "./Load"
 
 const Home = ({onAddToCart}) =>{ 
-    const { searchError,filteredProducts ,  searchData , allProducts} = useProducts();
+    const { searchError,filteredProducts ,  searchData } = useProducts();
     console.log( filteredProducts ,  searchData)
   
     return (

@@ -14,7 +14,6 @@ export const CartProvider = ({ children }) => {
   const [selectCategory , setSelectCategory ] = useState("");
   // use state to hande filter fn
   const [searchData , setSearchData]  = useState([])
-  const [categoryData , setCategoryData] = useState([])
   // use state to handel search
 
   const [userInput, setUserInput] = useState("");
@@ -76,9 +75,10 @@ const filteredProducts = allProducts.filter((product) => {
   const name = product.name?.toLowerCase() || "";
   const cat = product.category?.toLowerCase() || "";
 
-  const search = userInput.toLowerCase();
+  const search = userInput.toLowerCase().trim();
   const selected = selectCategory.toLowerCase();
-  const categorySearch = searchCategory.toLowerCase();
+  const categorySearch = searchCategory.toLowerCase().trim();
+  // if search not there return true all products 
 
   const matchSearch =
     !search || name.includes(search);
@@ -90,39 +90,25 @@ const filteredProducts = allProducts.filter((product) => {
     !categorySearch || cat.includes(categorySearch);
 
     if (search){
-      return matchSearch;
-     
+      return matchSearch; 
     }
-  
-
      if (categorySearch ) {
-  
      return  matchCategorySearch
-    }if (selectCategory){
-    
+    }if (selectCategory){ 
       return  matchCategory;
     }   
 });
 
-console.log( filteredProducts )
-
-
-// category 
-
-
 // search fn 
-
 const searchHandle = (e) => {
   e.preventDefault();
 
-  // إذا ما في إدخال
   if (!userInput.trim() && !selectCategory && !searchCategory) {
     setSearchError("Please enter something to search");
     setSearchData([]);
     return;
   }
 
-  // إذا ما في نتائج
   if (filteredProducts.length === 0) {
     setSearchError("We cannot find your item");
     setSearchData([]);
@@ -131,8 +117,12 @@ const searchHandle = (e) => {
     setSearchData(filteredProducts);
   }
   
-
   setUserInput("");
+};
+// clear search fn
+const clearSearch = () => {
+  setSearchData([]);
+  setSearchError("");
 };
 
 
@@ -152,7 +142,8 @@ const searchHandle = (e) => {
     handleIncrease,
     searchError,
     searchCategory ,
-    setSearchCategory
+    setSearchCategory,
+    clearSearch
   };
 
   return (

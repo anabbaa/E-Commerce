@@ -2,7 +2,7 @@ import { useProducts } from "../context/CartContext";
 
 const SelectCategory = () => {
 
-  const { searchCategory ,  setSearchCategory,   selectCategory,   setSelectCategory,} = useProducts();
+  const {clearSearch ,  searchCategory ,  setSearchCategory,   selectCategory,   setSelectCategory,} = useProducts();
 console.log(searchCategory)
   return (
     <div className="flex items-center justify-center h-[10vh] w-[100vw] ">
@@ -12,14 +12,20 @@ console.log(searchCategory)
   type="text"
   placeholder="find yours"
   value={searchCategory}
+
   onChange={(e) => {
+      clearSearch();
     setSearchCategory(e.target.value);
+      
   }}
 />
 
 <select
   value={selectCategory}
-  onChange={(e) =>   setSelectCategory(e.target.value)}
+  onChange={(e)=> {
+      clearSearch();
+      setSelectCategory(e.target.value)
+  }}
 >
   <option value="">All Categories</option>
   <option value="electronics">Electronics</option>
