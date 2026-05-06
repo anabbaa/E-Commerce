@@ -15,11 +15,13 @@ export const typography = {
 // Card styles (for product cards, user profiles, content previews, etc.)
 
 export const card = {
+  
   cardsWrapper:
-    "grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3",
+  "grid gap-6 px-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 items-stretch",
 
-  cardWrapper:
-    "group rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg",
+  
+    cardWrapper:
+  "group rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg flex flex-col h-full",
 
   imageWrapper:
     "flex h-56 items-center justify-center rounded-t-xl bg-gray-50 p-4",
@@ -27,13 +29,13 @@ export const card = {
   image:
     "max-h-full object-contain transition-transform duration-300 group-hover:scale-105",
 
-  content: "p-5 space-y-3",
+  content: "p-5 space-y-3 flex flex-col flex-1 justify-between",
 
-  title: "text-lg font-semibold text-gray-900",
+  title: "text-lg font-semibold text-gray-900 line-clamp-2 min-h-[3.5rem]",
 
   description: "text-sm text-gray-600 line-clamp-3",
 
-  priceRatingContainer: "flex items-center justify-between pt-2",
+  priceRatingContainer: "flex items-center justify-between pt-2 min-h-[2rem]",
 
   price: "text-xl font-bold text-gray-900",
 
@@ -177,9 +179,6 @@ export const zIndex = {
   toast: "z-90", // notifications/toasts
   overlay: "z-100", // full-screen overlays or dimming layers
 };
-
-
-
 
 
 // Page-level section container (global for all pages)

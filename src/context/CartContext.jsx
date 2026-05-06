@@ -1,126 +1,158 @@
-import { createContext, useContext, useState } from "react";
-import { products } from "../data/products";
+import { createContext, useContext, useState} from "react";
 import { FaHandshakeSimple } from "react-icons/fa6";
+import {products} from "../data/products"
+import { HiServerStack } from "react-icons/hi2";
+import { FiTruck } from "react-icons/fi";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  // use state for main all products
-  const  [allProducts , setAllProducrts] = useState(products);
+  // get products use state
+  const [allProducts, setAllProducts] = useState(products);
   // use state to handel select category 
-   const [searchItem , setSearchItem ] = useState("");
+   const [searchCategory , setSearchCategory ] = useState("");
   const [selectCategory , setSelectCategory ] = useState("");
+  // use state to hande filter fn
+  const [searchData , setSearchData]  = useState([])
+  const [categoryData , setCategoryData] = useState([])
   // use state to handel search
-  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [userInput, setUserInput] = useState("");
-  // use state to cart in header
+  const [searchError , setSearchError] = useState(""); 
+   // use state to cart in header
   //update cart
   const [addToCart , setAddToCart] = useState([])
 
   // fn to add to cart 
-  const handelAddToCart = (product) => {
-  if ((product.stock ?? 0) <= 0) return;
+ const handelAddToCart = (product) => {
+  if (product.stock <= 0) return;
 
-  setAddToCart((prevState) => {
-    const exist = prevState.find((item) => item.id === product.id);
+  setAddToCart((prev) => {
+    const exist = prev.find((item) => item.id === product.id);
 
     if (exist) {
-      return prevState.map((item) =>
+      return prev.map((item) =>
         item.id === product.id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-              stock: (item.stock ?? 0) - 1
-            }
+          ? { ...item, quantity: item.quantity + 1 , stock: item.stock -1}
           : item
       );
     } else {
-      return [
-        ...prevState,
-        {
-          ...product,
-          quantity: 1,
-          stock: (product.stock ?? 0) - 1
-        }
-      ];
+      return [...prev, { ...product, quantity: 1 }];
     }
-
   });
-  setAllProducrts((prevstate) => {
-  return prevstate.map((item) =>
-    item.id === product.id
-      ? { ...item, stock: item.stock - 1 }
-      : item
-  );
-});
-};
-
-// fn to add and decrease and dlete from cart 
-  const handleIncrease = (product) => {
-  setAddToCart((prev) =>
+  
+  // to minus 1 stock from main products list
+  setAllProducts((prev) =>
     prev.map((item) =>
       item.id === product.id
-        ? { ...item, quantity: item.quantity + 1 }
+        ? { ...item, stock: item.stock - 1 }
+        : item
+    )
+  );
+};
+// fn to add and decrease and dlete from cart 
+  const handleIncrease = (product) => {
+    setAddToCart((prev) =>
+    prev.map((item) =>
+      item.id === product.id
+        ? { ...item, stock: item.stock - 1, quantity: item.quantity +1 }
         : item
     )
   );
 };
 
 const handleDecrease = (product) => {
-  setAddToCart((prev) =>
-    prev
-      .map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-      .filter((item) => item.quantity > 0)
+     setAddToCart((prev) =>
+    prev.map((item) =>
+      item.id === product.id
+        ? { ...item, stock: item.stock + 1, quantity: item.quantity -1 }
+        : item
+    )
   );
 };
 
-// category fn
-  const category = products.filter((item) =>
-    
-    item.category.toLowerCase() === selectCategory.toLowerCase()
-  );
+// filter fn 
+const filteredProducts = allProducts.filter((product) => {
+  const name = product.name?.toLowerCase() || "";
+  const cat = product.category?.toLowerCase() || "";
 
-  // fn for  search
+  const search = userInput.toLowerCase();
+  const selected = selectCategory.toLowerCase();
+  const categorySearch = searchCategory.toLowerCase();
+
+  const matchSearch =
+    !search || name.includes(search);
+
+  const matchCategory =
+    !selected || cat === selected;
+
+  const matchCategorySearch =
+    !categorySearch || cat.includes(categorySearch);
+
+    if (search){
+      return matchSearch;
+     
+    }
+  
+
+     if (categorySearch ) {
+  
+     return  matchCategorySearch
+    }if (selectCategory){
+    
+      return  matchCategory;
+    }   
+});
+
+console.log( filteredProducts )
+
+
+// category 
+
+
+// search fn 
 
 const searchHandle = (e) => {
   e.preventDefault();
 
-  const userText = userInput.toLowerCase().trim();
-
-  if (!userText) {
-    setFilteredProducts([]);
+  // إذا ما في إدخال
+  if (!userInput.trim() && !selectCategory && !searchCategory) {
+    setSearchError("Please enter something to search");
+    setSearchData([]);
     return;
   }
 
-  const result = products.filter((product) =>
-    product.name.toLowerCase().includes(userText)
-  );
-
-  setFilteredProducts(result);
-
+  // إذا ما في نتائج
+  if (filteredProducts.length === 0) {
+    setSearchError("We cannot find your item");
+    setSearchData([]);
+  } else {
+    setSearchError("");
+    setSearchData(filteredProducts);
+  }
+  
 
   setUserInput("");
 };
 
+
+
+
   const contextObject = {
-    products,
-    filteredProducts,
+    allProducts,
+    filteredProducts, 
+    searchData,
     searchHandle,
     userInput,
     setUserInput,
-    searchItem,
-    setSearchItem,
     setSelectCategory,
-    category,
     handelAddToCart,
     addToCart,
     handleDecrease,
     handleIncrease,
-    allProducts
+    searchError,
+    searchCategory ,
+    setSearchCategory
   };
 
   return (

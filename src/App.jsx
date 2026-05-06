@@ -5,10 +5,14 @@ import Cart from './components/Cart'
 import { createBrowserRouter , RouterProvider} from 'react-router-dom'
 import ProductsList from './components/ProductsList'
 import Layout from './components/LayOut'
+import Load from './components/Load'
+import ViewMore from './components/ViewMore'
 
 const App = () => {
 
+
 const { handelAddToCart} = useProducts();
+
 
 const router = createBrowserRouter([
   {
@@ -23,7 +27,8 @@ const router = createBrowserRouter([
     path: "/cart",
     element: (
       <Layout>
-        <Cart />
+        <Cart onAddToCart={handelAddToCart} 
+/>
       </Layout>
     ),
   },
@@ -35,6 +40,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
+  {
+    path: "/viewmore/:id",
+    element : (
+      <Layout>
+        <ViewMore />
+      </Layout>
+    )
+  }
 ]);
 
   return (

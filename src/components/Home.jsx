@@ -8,27 +8,28 @@ import { useProducts } from "../context/CartContext"
 import {pageSection } from "../styles/globals"
 import Cart from "./Cart"
 import Layout from "./LayOut"
+import Load from "./Load"
 
 const Home = ({onAddToCart}) =>{ 
-    const { category, filteredProducts } = useProducts();
+    const { searchError,filteredProducts ,  searchData , allProducts} = useProducts();
+    console.log( filteredProducts ,  searchData)
+  
     return (
-        <>
-      
-      <SelectCategory  /> 
-
+  <>
+    <SelectCategory />
     <LookUp />
     <section className={`${pageSection.base} flex items-center justify-center`}>
-  {filteredProducts.length > 0 ? (
-    <SearchProducts />
-  ) : category.length > 0 ? (
-    <Category  />
-  ) : (
-    <ProductsList onAddToCart={onAddToCart} />
-  )}
-</section>
-
-</>
-    )
-
+      {searchData.length > 0 ? (
+  <SearchProducts />
+) : searchError ? (
+  <p className="text-bold text-2xl">{searchError}</p>
+) : filteredProducts.length > 0 ? (
+  <Category />
+) :  (
+  <ProductsList onAddToCart={onAddToCart} />
+)}
+    </section>
+  </>
+)
 }
 export default Home
