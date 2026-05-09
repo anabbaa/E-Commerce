@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     path: "/viewmore/:id",
     element : (
       <Layout>
-        <ViewMore />
+        <ViewMore  onAddToCart={handelAddToCart}/>
       </Layout>
     )
   }

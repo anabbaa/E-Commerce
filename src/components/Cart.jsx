@@ -6,8 +6,7 @@ import Bill from "./Bill";
 import Layout from "./LayOut";
 const Cart = ({onAddToCart}) => {
       const { addToCart  } = useProducts();
-      console.log(addToCart)
-
+      
     return (
         <>
   <div className="w-[90vw] h-screen flex flex-wrap justif-evenly flex-row gap-3" >
@@ -20,8 +19,7 @@ const Cart = ({onAddToCart}) => {
         <AddDelete  product={product} />
       </div>
     ))}
-   
-
+    
   </div>
       <Bill />
         </>

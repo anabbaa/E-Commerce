@@ -15,7 +15,6 @@ export const CartProvider = ({ children }) => {
   const [selectCategory , setSelectCategory ] = useState("");
   // use state to hande filter fn
   const [searchData , setSearchData]  = useState([])
-  const [categorySearchData , setCategorySearchData] = useState([])
   // use state to handel search
 
   const [userInput, setUserInput] = useState("");
@@ -72,6 +71,11 @@ const handleDecrease = (product) => {
   );
 };
 
+// delete from cart fn 
+  const handelDelete = (product)=>  {
+    setAddToCart((prev) => prev.filter((item)=> item.id != product.id))
+  }
+
 // filter fn 
 const filteredProducts = allProducts.filter((product) => {
   const name = product.name?.toLowerCase() || "";
@@ -88,12 +92,9 @@ const filteredProducts = allProducts.filter((product) => {
   if (categorySearch) return matchCategorySearch;
   if (selectCategory) return matchCategory;
 
-  return true; // 👈 this is the fix - when all fields empty, show all products
+  return true; 
 });
 // category fn 
-
-
-
  const categoryHandel = () => {
   if (!userInput.trim() && !selectCategory && !searchCategory) {
     setSearchError("Please enter something to search");
@@ -136,8 +137,6 @@ const clearSearch = () => {
   setSearchError("");
 };
 
-
-
   const contextObject = {
     allProducts,
     filteredProducts, 
@@ -157,6 +156,7 @@ const clearSearch = () => {
     setSearchError,
     setSearchData,
     categoryHandel,
+    handelDelete
   };
 
   return (
