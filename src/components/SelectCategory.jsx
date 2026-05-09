@@ -2,8 +2,10 @@ import { useProducts } from "../context/CartContext";
 
 const SelectCategory = () => {
 
-  const {clearSearch ,  searchCategory ,  setSearchCategory,   selectCategory,   setSelectCategory,} = useProducts();
-console.log(searchCategory)
+  const {clearSearch  ,  searchCategory ,  setSearchCategory, categoryHandel,  
+   categorzHandel ,  selectCategory,    setSelectCategory,} = useProducts();
+
+
   return (
     <div className="flex items-center justify-center h-[10vh] w-[100vw] ">
       <div className="flex justify-between items-center h-[2vh] w-[25vw] px-4">
@@ -15,9 +17,13 @@ console.log(searchCategory)
 
   onChange={(e) => {
       clearSearch();
-    setSearchCategory(e.target.value);
-      
+    setSearchCategory(e.target.value);  
   }}
+  onKeyDown={(e) => {
+  if (e.key === "Enter") {
+    categoryHandel()
+  }
+}}
 />
 
 <select

@@ -9,10 +9,7 @@ import Load from './components/Load'
 import ViewMore from './components/ViewMore'
 
 const App = () => {
-
-
 const { handelAddToCart} = useProducts();
-
 
 const router = createBrowserRouter([
   {
@@ -29,14 +26,6 @@ const router = createBrowserRouter([
       <Layout>
         <Cart onAddToCart={handelAddToCart} 
 />
-      </Layout>
-    ),
-  },
-  {
-    path: "/products",
-    element: (
-      <Layout>
-        <ProductsList />
       </Layout>
     ),
   },

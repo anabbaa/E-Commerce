@@ -3,6 +3,7 @@ import { FaHandshakeSimple } from "react-icons/fa6";
 import {products} from "../data/products"
 import { HiServerStack } from "react-icons/hi2";
 import { FiTruck } from "react-icons/fi";
+import { PiSelectionInverseLight } from "react-icons/pi";
 
 export const CartContext = createContext();
 
@@ -14,6 +15,7 @@ export const CartProvider = ({ children }) => {
   const [selectCategory , setSelectCategory ] = useState("");
   // use state to hande filter fn
   const [searchData , setSearchData]  = useState([])
+  const [categorySearchData , setCategorySearchData] = useState([])
   // use state to handel search
 
   const [userInput, setUserInput] = useState("");
@@ -74,30 +76,39 @@ const handleDecrease = (product) => {
 const filteredProducts = allProducts.filter((product) => {
   const name = product.name?.toLowerCase() || "";
   const cat = product.category?.toLowerCase() || "";
-
-  const search = userInput.toLowerCase().trim();
+  const search = userInput.toLowerCase();
   const selected = selectCategory.toLowerCase();
-  const categorySearch = searchCategory.toLowerCase().trim();
-  // if search not there return true all products 
+  const categorySearch = searchCategory.toLowerCase();
 
-  const matchSearch =
-    !search || name.includes(search);
+  const matchSearch = !search || name.includes(search);
+  const matchCategory = !selected || cat === selected;
+  const matchCategorySearch = !categorySearch || cat.includes(categorySearch);
 
-  const matchCategory =
-    !selected || cat === selected;
+  if (search) return matchSearch;
+  if (categorySearch) return matchCategorySearch;
+  if (selectCategory) return matchCategory;
 
-  const matchCategorySearch =
-    !categorySearch || cat.includes(categorySearch);
-
-    if (search){
-      return matchSearch; 
-    }
-     if (categorySearch ) {
-     return  matchCategorySearch
-    }if (selectCategory){ 
-      return  matchCategory;
-    }   
+  return true; // 👈 this is the fix - when all fields empty, show all products
 });
+// category fn 
+
+
+
+ const categoryHandel = () => {
+  if (!userInput.trim() && !selectCategory && !searchCategory) {
+    setSearchError("Please enter something to search");
+    return;
+  }
+
+  if (filteredProducts.length === 0) {
+    setSearchError("We cannot find your category");
+
+  } else {
+    setSearchError("");
+  }
+  
+  setSearchCategory("");
+};
 
 // search fn 
 const searchHandle = (e) => {
@@ -127,7 +138,6 @@ const clearSearch = () => {
 
 
 
-
   const contextObject = {
     allProducts,
     filteredProducts, 
@@ -143,7 +153,10 @@ const clearSearch = () => {
     searchError,
     searchCategory ,
     setSearchCategory,
-    clearSearch
+    clearSearch,
+    setSearchError,
+    setSearchData,
+    categoryHandel,
   };
 
   return (

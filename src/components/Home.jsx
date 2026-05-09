@@ -12,8 +12,7 @@ import Load from "./Load"
 
 const Home = ({onAddToCart}) =>{ 
     const { searchError,filteredProducts ,  searchData } = useProducts();
-    console.log( filteredProducts ,  searchData)
-  
+    
     return (
   <>
     <SelectCategory />

@@ -17,7 +17,6 @@ function Header({ title, subTitle }) {
 
       <nav className="flex items-center gap-6">
         <a href="/" className="hover:underline" >Home</a>
-<a href="/products" className="hover:underline">Products</a>
 
         <button onClick={() => navigate("/cart")}>
           <IoIosCart size={33} />
