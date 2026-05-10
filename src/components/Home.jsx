@@ -9,12 +9,14 @@ import {pageSection } from "../styles/globals"
 import Cart from "./Cart"
 import Layout from "./LayOut"
 import Load from "./Load"
+import Notify  from "./Notify"
 
 const Home = ({onAddToCart}) =>{ 
-    const { searchError,filteredProducts ,  searchData } = useProducts();
-    
+    const { searchError,filteredProducts ,  searchData , addToCart} = useProducts();
+    console.log(addToCart)
     return (
   <>
+  <Notify addToCart={addToCart} />
     <SelectCategory />
     <LookUp />
     <section className={`${pageSection.base} flex items-center justify-center`}>
