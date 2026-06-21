@@ -10,31 +10,39 @@ const App = () => {
   const { handelAddToCart } = useProducts();
 
   const router = createHashRouter([
-    {
-      path: "/",
-      element: (
-        <Layout>
-          <Home onAddToCart={handelAddToCart} />
-        </Layout>
-      ),
-    },
-    {
-      path: "/cart",
-      element: (
-        <Layout>
-          <Cart onAddToCart={handelAddToCart} />
-        </Layout>
-      ),
-    },
-    {
-      path: "/viewmore/:id",
-      element: (
-        <Layout>
-          <ViewMore onAddToCart={handelAddToCart} />
-        </Layout>
-      ),
-    },
-  ]);
+  {
+    path: "/",
+    element: (
+      <Layout>
+        <Home onAddToCart={handelAddToCart} />
+      </Layout>
+    ),
+  },
+  {
+    path: "/cart",
+    element: (
+      <Layout>
+        <Cart onAddToCart={handelAddToCart} />
+      </Layout>
+    ),
+  },
+  {
+    path: "/viewmore/:id",
+    element: (
+      <Layout>
+        <ViewMore onAddToCart={handelAddToCart} />
+      </Layout>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <Layout>
+        <Home onAddToCart={handelAddToCart} />
+      </Layout>
+    ),
+  },
+]);
 
   return <RouterProvider router={router} />;
 };
