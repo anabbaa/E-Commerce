@@ -1,6 +1,8 @@
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
+import { useProducts } from "../context/CartContext";
 const Notify = ({ addToCart }) => {
-  const [lastAdded, setLastAdded] = useState(null);
+  const { lastAdded , setLastAdded} = useProducts()
+
 
   const totalQuantity = addToCart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -18,6 +20,8 @@ const Notify = ({ addToCart }) => {
     return () => clearTimeout(timer);
 
   }, [totalQuantity]);
+
+
 
   return (
   

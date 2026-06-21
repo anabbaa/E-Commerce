@@ -22,6 +22,8 @@ export const CartProvider = ({ children }) => {
    // use state to cart in header
   //update cart
   const [addToCart , setAddToCart] = useState([])
+  // state for notify
+    const [lastAdded, setLastAdded] = useState(null);
 
   // fn to add to cart 
  const handelAddToCart = (product) => {
@@ -156,7 +158,9 @@ const clearSearch = () => {
     setSearchError,
     setSearchData,
     categoryHandel,
-    handelDelete
+    handelDelete,
+    lastAdded,
+    setLastAdded
   };
 
   return (

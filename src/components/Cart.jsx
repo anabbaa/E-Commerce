@@ -13,8 +13,8 @@ const Cart = ({onAddToCart}) => {
 
     {addToCart.map((product) => (
       <div key={product.id}  
-       className="flex flex-col w-[30%] h-[70vh] items-center flex justify-evenly"
-         >
+      className="flex flex-col w-[30%] h-[70vh] items-center flex justify-evenly"
+        >
         <ProductCard onAddToCart={onAddToCart}    product={product} />
         <AddDelete  product={product} />
       </div>

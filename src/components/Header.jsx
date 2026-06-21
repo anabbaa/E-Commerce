@@ -1,8 +1,16 @@
+
 import { IoIosCart } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useProducts } from "../context/CartContext";
 
 function Header({ title, subTitle }) {
   const navigate = useNavigate();
+
+  const {lastAdded } = useProducts();
+
+
+
+  
 
   return (
     <header className="flex items-center justify-around w-screen bg-blue-500 text-white p-4 h-[10vh]">
@@ -18,11 +26,16 @@ function Header({ title, subTitle }) {
       <nav className="flex items-center gap-6">
         <a href="/" className="hover:underline" >Home</a>
 
-        
+      
 
-        <button onClick={() => navigate("/cart")} className="h-[6vh]">
+        <button
+  onClick={() => navigate("/cart")}
+  className={!lastAdded ? "cartHidden" : "cart"}
+>
           <IoIosCart size={33} />
         </button>
+
+        
           
           
       </nav>

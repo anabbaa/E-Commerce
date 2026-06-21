@@ -45,30 +45,29 @@ body {
     .notify   {
       width:fit-content;
       background-color: #efecec;
-      
       display: flex;
       justify-self: end;
       position: relative;
-      bottom: 3vh;
-      right: 4vw;
-         padding: 0 1vw;;
-             border-radius: 32px;
+      transform: translatey(-6px);
+      padding: 0 1vw;
+      border-radius: 32px;
+    }
+    .cart {
       
+      position: relative;
     }
     
-    
-    .notify ::before{
-        position: absolute;
+    .cart::after{
+      position: absolute;
           content: "";
-        width: 2vw;
-        height:2vh;
-        bottom: 4vh;;
-    
-        left: 6vw;
-          border-left: 10px solid transparent;
-    border-right: 10px solid  transparent;
-    border-bottom: 10px solid rgb(242, 236, 236);
-      
+          transform: translatey(px);
+          border-left: 8px solid transparent;
+    border-right: 8px solid  transparent;
+    border-bottom: 8px solid #fff
+    }
+    .cartHiffen::after {
+      display: block;
+
     }
 
 
