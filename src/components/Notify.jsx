@@ -21,10 +21,7 @@ const Notify = ({ addToCart }) => {
 
   }, [totalQuantity]);
 
-
-
   return (
-  
     <div className="notify">
       {lastAdded && <p>{lastAdded} added to cart!</p>}
     </div>

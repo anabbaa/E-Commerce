@@ -9,19 +9,21 @@ const Cart = ({onAddToCart}) => {
       
     return (
         <>
-  <div className="w-[90vw] h-screen flex flex-wrap justif-evenly flex-row gap-3" >
-
+        <div className="flex justify-center items-center h-screen">
+  <div className="h-[80%] flex flex-wrap justify-center gap-6">
     {addToCart.map((product) => (
-      <div key={product.id}  
-      className="flex flex-col w-[30%] h-[70vh] items-center flex justify-evenly"
-        >
-        <ProductCard onAddToCart={onAddToCart}    product={product} />
-        <AddDelete  product={product} />
-      </div>
+      <div 
+      key={product.id}
+      className="flex flex-col w-[30%] h-[70vh] items-center justify-center gap-6"
+>
+      <ProductCard onAddToCart={onAddToCart} product={product} />
+      <AddDelete product={product} />
+</div>
     ))}
-    
+
+    <Bill />
   </div>
-      <Bill />
+</div>
         </>
     )
 

@@ -5,7 +5,7 @@ import SearchProducts from "./SearchProducts"
 import Category from "./Category"
 import ProductsList from "./ProductsList"
 import { useProducts } from "../context/CartContext"
-import {pageSection } from "../styles/globals"
+//import {pageSection } from "../styles/globals"
 import Cart from "./Cart"
 import Layout from "./LayOut"
 import Load from "./Load"
@@ -19,7 +19,7 @@ const Home = ({onAddToCart}) =>{
   <Notify addToCart={addToCart} />
     <SelectCategory />
     <LookUp />
-    <section className={`${pageSection.base} flex items-center justify-center`}>
+    <section className={``}>
       {searchData.length > 0 ? (
   <SearchProducts />
 ) : searchError ? (
